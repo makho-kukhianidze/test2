@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width">
 
 <link rel="stylesheet" href="hologram/style.css">
-<script src="miniature.earth.core.js"></script>
+<script src="../miniature.earth.core.js"></script>
 
 <script>
 
@@ -26,7 +26,7 @@ window.addEventListener( 'load', function() {
 	
 		light: 'none',
 
-		mapImage: 'hologram/hologram-map.svg',
+		mapImage: 'https://raw.githubusercontent.com/makho-kukhianidze/test1/6efadd0ff0f2b42d2285fbae00b84c0c74cd9253/hologram-map.svg',
 		transparent: true,
 		
 		autoRotate : true,
@@ -50,6 +50,7 @@ window.addEventListener( 'load', function() {
 			offset: -0.5
 		};
 		
+		//ხაზების დამატება
 		for ( var i in connections ) {			
 			line.locations = [ { lat: connections[i][0], lng: connections[i][1] }, { lat: connections[i][2], lng: connections[i][3] } ];
 			this.addLine( line );
@@ -60,12 +61,14 @@ window.addEventListener( 'load', function() {
 		// add 8 shine sprites
 		
 		for ( var i=0; i < 8; i++ ) {
+			//ციმციმის ობიექტები
 			sprites[i] = this.addSprite( {
-				image: 'hologram/hologram-shine.svg',
-				scale: 0.01,
+				image: 'https://raw.githubusercontent.com/makho-kukhianidze/test1/0dbb30685db2cce9a4af1cbac05e0856b7f708b8/hologram-shine.svg',
+				scale: 2.01,
 				offset: -0.5,
 				opacity: 0.5
 			} );
+
 			pulse( i );
 		}
 		
@@ -82,13 +85,17 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-
+//ციმციმი
 function pulse( index ) {
-	var random_location = connections[ getRandomInt(0, connections.length-1) ];
-	sprites[index].location = { lat: random_location[0] , lng: random_location[1] };
+	//შემთხვევითი ლოკაცია
+	 var random_location = connections[ getRandomInt(0, connections.length-1) ];
+
+	 //წერტილებზე ლოკაციების მინიჭება
+	 sprites[index].location = { lat: random_location[0] , lng: random_location[1] };
 	
-	sprites[index].animate( 'scale', 0.5, { duration: 320, complete : function(){
-		this.animate( 'scale', 0.01, { duration: 320, complete : function(){
+	//მიმდევრობით ციმციმი
+	 sprites[index].animate( 'scale', 1.5, { duration: 320, complete : function(){
+		this.animate( 'scale', 0.1, { duration: 320, complete : function(){
 			setTimeout( function(){ pulse( index ); }, getRandomInt(100, 400) );
 		} });
 	} });
@@ -98,6 +105,7 @@ function pulse( index ) {
 
 // locations conntected by lines and places where hologram shines appear
 
+//ლოკაციები
 var connections = [
 	[59.651901245117,17.918600082397,	41.8002778,12.2388889],
 	[59.651901245117,17.918600082397,	51.4706,-0.461941],
@@ -107,7 +115,7 @@ var connections = [
 	
 	[30.12190055847168,31.40559959411621, -1.31923997402,36.9277992249],
 	[30.12190055847168,31.40559959411621, 25.2527999878,55.3643989563],
-	[30.12190055847168,31.40559959411621, 41.8002778,12.2388889],
+	 [30.12190055847168,31.40559959411621, 41.8002778,12.2388889],
 
 	[28.566499710083008,77.10310363769531,	7.180759906768799,79.88410186767578],
 	[28.566499710083008,77.10310363769531,	40.080101013183594,116.58499908447266],
